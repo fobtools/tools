@@ -1,4 +1,15 @@
+const VERSION = "1.0.0";
+
 const tools = [
+    {
+        name: "首页",
+        content: `
+            <h3>今日汇率</h3>
+            <div id="exchangeRates">
+                <p>加载中...</p>
+            </div>
+        `
+    },
     {
         name: "抛货计算",
         content: `
@@ -46,13 +57,17 @@ function initializeTools() {
     const toolTitle = document.getElementById("toolTitle");
     const toolContent = document.getElementById("toolContent");
 
+    toolList.innerHTML = ''; // 清空现有的列表项
+
     tools.forEach((tool, index) => {
         const li = document.createElement("li");
         li.textContent = tool.name;
         li.addEventListener("click", () => {
             toolTitle.textContent = tool.name;
             toolContent.innerHTML = tool.content;
-            if (tool.name === "抛货计算") {
+            if (tool.name === "首页") {
+                fetchExchangeRates();
+            } else if (tool.name === "抛货计算") {
                 initializeVolumeWeightCalculator();
             } else if (tool.name === "运费模板计算") {
                 initializeShippingTemplateCalculator();
@@ -60,6 +75,66 @@ function initializeTools() {
         });
         toolList.appendChild(li);
     });
+
+    // 默认显示首页
+    toolTitle.textContent = tools[0].name;
+    toolContent.innerHTML = tools[0].content;
+    fetchExchangeRates();
+
+    // 添加版本信息
+    const versionInfo = document.getElementById("versionInfo");
+    versionInfo.textContent = `版本 ${VERSION} | 最后更新: ${new Date().toLocaleDateString()}`;
+}
+
+function fetchExchangeRates() {
+    const url = 'https://open.er-api.com/v6/latest/USD';
+
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            const rates = data.rates;
+            const exchangeRatesDiv = document.getElementById('exchangeRates');
+            exchangeRatesDiv.innerHTML = `
+                <div class="exchange-rate-container">
+                    <div class="exchange-rate-card">
+                        <h4>美元 (USD) 汇率</h4>
+                        <div class="rate-item">
+                            <span class="currency">CNY:</span>
+                            <span class="rate">${rates.CNY.toFixed(4)}</span>
+                        </div>
+                        <div class="rate-item">
+                            <span class="currency">EUR:</span>
+                            <span class="rate">${rates.EUR.toFixed(4)}</span>
+                        </div>
+                        <div class="rate-item">
+                            <span class="currency">GBP:</span>
+                            <span class="rate">${rates.GBP.toFixed(4)}</span>
+                        </div>
+                    </div>
+                    <div class="exchange-rate-card">
+                        <h4>欧元 (EUR) 汇率</h4>
+                        <div class="rate-item">
+                            <span class="currency">CNY:</span>
+                            <span class="rate">${(1/rates.EUR * rates.CNY).toFixed(4)}</span>
+                        </div>
+                        <div class="rate-item">
+                            <span class="currency">USD:</span>
+                            <span class="rate">${(1/rates.EUR).toFixed(4)}</span>
+                        </div>
+                        <div class="rate-item">
+                            <span class="currency">GBP:</span>
+                            <span class="rate">${(1/rates.EUR * rates.GBP).toFixed(4)}</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="update-time">更新时间: ${new Date(data.time_last_update_unix * 1000).toLocaleString()}</p>
+            `;
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            const exchangeRatesDiv = document.getElementById('exchangeRates');
+            exchangeRatesDiv.innerHTML = '<p class="error-message">获取汇率失败,请稍后再试。</p>';
+        });
 }
 
 function initializeVolumeWeightCalculator() {

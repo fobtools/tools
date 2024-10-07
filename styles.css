@@ -97,3 +97,82 @@ button:hover {
     background-color: #ecf0f1;
     border-radius: 5px;
 }
+
+#exchangeRates {
+    background-color: #ecf0f1;
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+#exchangeRates p {
+    margin: 5px 0;
+}
+
+.exchange-rate-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.exchange-rate-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 20px;
+    width: calc(50% - 10px);
+    min-width: 250px;
+}
+
+.exchange-rate-card h4 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #2c3e50;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 5px;
+}
+
+.rate-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.currency {
+    font-weight: bold;
+    color: #34495e;
+}
+
+.rate {
+    color: #2980b9;
+}
+
+.update-time {
+    text-align: right;
+    color: #7f8c8d;
+    font-style: italic;
+    margin-top: 20px;
+}
+
+.error-message {
+    color: #e74c3c;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* 在文件末尾添加以下样式 */
+footer {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+#versionInfo {
+    margin: 0;
+    font-size: 0.9em;
+}
