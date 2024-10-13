@@ -1,35 +1,40 @@
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Roboto', 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f0f0f0;
+    background-color: #f5f7fa;
+    font-size: 16px; /* 减小基础字体大小 */
+    color: #333;
+    line-height: 1.5;
 }
 
 .container {
     display: flex;
-    height: 100vh;
-    max-width: 1200px;
+    min-height: 100vh;
+    max-width: 1400px;
     margin: 0 auto;
     background-color: #fff;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
 }
 
 .sidebar {
-    width: 250px;
+    width: 280px;
     background-color: #2c3e50;
     color: #ecf0f1;
-    padding: 20px;
+    padding: 30px;
 }
 
 .sidebar h2 {
-    margin-bottom: 20px;
-    font-size: 1.5em;
+    margin-bottom: 25px;
+    font-size: 1.8em; /* 减小侧边栏标题字体 */
     text-align: center;
+    color: #3498db;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
 }
 
 .content {
     flex-grow: 1;
-    padding: 30px;
+    padding: 40px;
     overflow-y: auto;
 }
 
@@ -40,103 +45,124 @@ body {
 
 #toolList li {
     cursor: pointer;
-    padding: 10px 15px;
-    margin-bottom: 5px;
+    padding: 12px 18px;
+    margin-bottom: 8px;
     background-color: #34495e;
-    border-radius: 5px;
-    transition: background-color 0.3s;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    font-size: 1em; /* 减小工具列表字体 */
 }
 
 #toolList li:hover {
     background-color: #3498db;
+    transform: translateX(5px);
 }
 
 #toolTitle {
     color: #2c3e50;
-    border-bottom: 2px solid #3498db;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
+    border-bottom: 3px solid #3498db;
+    padding-bottom: 12px;
+    margin-bottom: 25px;
+    font-size: 2em; /* 减小工具标题字体 */
+    text-align: center;
 }
 
 form {
     background-color: #ecf0f1;
-    padding: 20px;
-    border-radius: 5px;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
 label {
     display: inline-block;
-    width: 150px;
-    margin-bottom: 10px;
+    width: 180px;
+    margin-bottom: 12px;
+    font-weight: bold;
+    color: #2c3e50;
+    font-size: 0.95em; /* 减小标签字体 */
 }
 
-input[type="number"] {
-    width: 200px;
-    padding: 5px;
+input[type="number"], input[type="text"], textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px; /* 减小输入框字体 */
     border: 1px solid #bdc3c7;
-    border-radius: 3px;
+    border-radius: 4px;
+    transition: border-color 0.3s ease;
+}
+
+input[type="number"]:focus, input[type="text"]:focus, textarea:focus {
+    border-color: #3498db;
+    outline: none;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
 }
 
 button {
     background-color: #3498db;
     color: #fff;
     border: none;
-    padding: 10px 20px;
-    border-radius: 3px;
+    padding: 12px 24px;
+    border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
+    font-size: 16px; /* 减小按钮字体 */
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 15px;
 }
 
 button:hover {
     background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
 #result, #templateResult {
-    margin-top: 20px;
-    padding: 15px;
+    margin-top: 30px;
+    padding: 20px;
     background-color: #ecf0f1;
-    border-radius: 5px;
-}
-
-#exchangeRates {
-    background-color: #ecf0f1;
-    padding: 15px;
-    border-radius: 5px;
-    margin-top: 20px;
-}
-
-#exchangeRates p {
-    margin: 5px 0;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
 .exchange-rate-container {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 30px;
 }
 
 .exchange-rate-card {
     background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    padding: 20px;
-    width: calc(50% - 10px);
-    min-width: 250px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    padding: 25px;
+    width: calc(50% - 15px);
+    min-width: 280px;
+    transition: all 0.3s ease;
+}
+
+.exchange-rate-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
 .exchange-rate-card h4 {
     margin-top: 0;
-    margin-bottom: 15px;
+    margin-bottom: 18px;
     color: #2c3e50;
     border-bottom: 2px solid #3498db;
-    padding-bottom: 5px;
+    padding-bottom: 8px;
+    font-size: 1.4em; /* 减小汇率卡片标题字体 */
 }
 
 .rate-item {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
+    font-size: 1.1em; /* 减小汇率项目字体 */
 }
 
 .currency {
@@ -146,33 +172,81 @@ button:hover {
 
 .rate {
     color: #2980b9;
+    font-weight: bold;
 }
 
 .update-time {
     text-align: right;
     color: #7f8c8d;
     font-style: italic;
-    margin-top: 20px;
+    margin-top: 25px;
+    font-size: 0.9em;
 }
 
 .error-message {
     color: #e74c3c;
     text-align: center;
     font-weight: bold;
+    font-size: 1.1em; /* 减小错误信息字体 */
+    padding: 18px;
+    background-color: #fadbd8;
+    border-radius: 4px;
+    margin-top: 18px;
 }
 
-/* 在文件末尾添加以下样式 */
 footer {
     background-color: #2c3e50;
     color: #ecf0f1;
     text-align: center;
-    padding: 10px 0;
+    padding: 15px 0;
     position: fixed;
     bottom: 0;
     width: 100%;
+    font-size: 1em;
+    box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
 }
 
 #versionInfo {
     margin: 0;
-    font-size: 0.9em;
+    font-size: 0.9em; /* 减小版本信息字体 */
+}
+
+#inputText, #outputText, #excludeWords {
+    width: 100%;
+    margin-bottom: 12px;
+    padding: 10px;
+    border: 1px solid #bdc3c7;
+    border-radius: 4px;
+    font-size: 14px; /* 减小文本区域字体 */
+    transition: border-color 0.3s ease;
+}
+
+#inputText:focus, #outputText:focus, #excludeWords:focus {
+    border-color: #3498db;
+    outline: none;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+}
+
+#caseConverter button {
+    margin-right: 15px;
+    margin-bottom: 15px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .content {
+        padding: 20px;
+    }
+
+    .exchange-rate-card {
+        width: 100%;
+    }
 }

@@ -49,6 +49,21 @@ const tools = [
             </form>
             <div id="templateResult"></div>
         `
+    },
+    {
+        name: "大小写转换",
+        content: `
+            <h3>大小写转换器</h3>
+            <textarea id="inputText" rows="5" cols="50" placeholder="请输入要转换的文本"></textarea>
+            <br>
+            <input type="text" id="excludeWords" placeholder="输入不需要转换的词,用逗号分隔">
+            <br>
+            <button onclick="convertCase('upper')">转换为大写</button>
+            <button onclick="convertCase('lower')">转换为小写</button>
+            <button onclick="convertCase('title')">转换为标题格式</button>
+            <br>
+            <textarea id="outputText" rows="5" cols="50" readonly></textarea>
+        `
     }
 ];
 
@@ -194,6 +209,34 @@ function initializeShippingTemplateCalculator() {
             <p>${usdTemplate}</p>
         `;
     });
+}
+
+function convertCase(type) {
+    const inputText = document.getElementById('inputText').value;
+    const excludeWords = document.getElementById('excludeWords').value.split(',').map(word => word.trim());
+    let outputText = '';
+
+    // 创建一个正则表达式来匹配需要排除的词
+    const excludeRegex = new RegExp(`\\b(${excludeWords.join('|')})\\b`, 'gi');
+
+    // 使用正则表达式替换函数来处理文本
+    outputText = inputText.replace(/\S+/g, function(word) {
+        if (excludeWords.includes(word)) {
+            return word; // 如果是需要排除的词,保持不变
+        }
+        switch (type) {
+            case 'upper':
+                return word.toUpperCase();
+            case 'lower':
+                return word.toLowerCase();
+            case 'title':
+                return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+            default:
+                return word;
+        }
+    });
+
+    document.getElementById('outputText').value = outputText;
 }
 
 document.addEventListener("DOMContentLoaded", initializeTools);
